@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
 import { accentText } from "@/lib/theme";
+import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
@@ -43,17 +44,7 @@ export default function Hero() {
         }}
       />
 
-      <div
-        style={{
-          position: "relative",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "0px 48px",
-          maxWidth: 880,
-        }}
-      >
+      <div className={styles.content}>
         <div
           style={{
             fontSize: 13,
@@ -93,7 +84,7 @@ export default function Hero() {
           Performance apparel built on structure, not slogans. Every line,
           considered.
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+        <div className={styles.actions}>
           <a
             href="#collection"
             style={{
@@ -125,18 +116,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div
-        style={{
-          position: "absolute",
-          bottom: 36,
-          left: 48,
-          fontSize: 11,
-          letterSpacing: "0.14em",
-          color: "#7A7A78",
-        }}
-      >
-        // SCROLL
-      </div>
+      <div className={styles.scroll}>// SCROLL</div>
     </div>
   );
 }

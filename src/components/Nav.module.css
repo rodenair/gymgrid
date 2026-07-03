@@ -1,0 +1,92 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 48px;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.joinButton {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #0a0a0a;
+  background: #ededec;
+  padding: 11px 22px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.menuButton {
+  display: none;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .nav {
+    padding: 16px 20px;
+  }
+
+  .links,
+  .joinButton {
+    display: none;
+  }
+
+  .menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f2f2f0;
+    cursor: pointer;
+  }
+
+  .mobileMenu.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #0a0a0a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 20px 24px;
+  }
+
+  .mobileMenu a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: #c9cbcc;
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .mobileMenu .mobileJoin {
+    margin-top: 16px;
+    text-align: center;
+    color: #0a0a0a;
+    background: #ededec;
+    padding: 14px 22px;
+    font-weight: 600;
+    border-bottom: none;
+  }
+}

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { oswald } from "@/lib/fonts";
+import styles from "./Join.module.css";
 
 export default function Join() {
   const [email, setEmail] = useState("");
@@ -19,17 +20,7 @@ export default function Join() {
   }
 
   return (
-    <div
-      id="join"
-      style={{
-        background: "#0A0A0A",
-        padding: "150px 48px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
+    <div id="join" className={styles.section}>
       <div
         style={{
           fontSize: 12,

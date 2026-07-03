@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
+import styles from "./Collection.module.css";
 
 const products = [
   {
@@ -27,17 +28,7 @@ const products = [
 
 export default function Collection() {
   return (
-    <div
-      id="collection"
-      style={{
-        position: "relative",
-        background: "#111110",
-        padding: "140px 48px",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        overflow: "hidden",
-      }}
-    >
+    <div id="collection" className={styles.section}>
       <div style={{ position: "relative", maxWidth: 1400, margin: "0 auto" }}>
         <div
           style={{
@@ -85,13 +76,7 @@ export default function Collection() {
           </div>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 32,
-          }}
-        >
+        <div className={styles.grid}>
           {products.map((product) => (
             <div key={product.id}>
               <div

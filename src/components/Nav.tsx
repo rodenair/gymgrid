@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
 import { accentText } from "@/lib/theme";
+import styles from "./Nav.module.css";
 
 const navLinks = [
   { href: "#collection", label: "COLLECTION" },
@@ -9,21 +13,10 @@ const navLinks = [
 ];
 
 export default function Nav() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "22px 48px",
-        background: "rgba(10,10,10,0.85)",
-        backdropFilter: "blur(10px)",
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
-      }}
-    >
+    <div className={styles.nav}>
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <div style={{ width: 34, height: 35, flexShrink: 0, position: "relative" }}>
           <Image
@@ -47,7 +40,7 @@ export default function Nav() {
         </div>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
+      <div className={styles.links}>
         {navLinks.map((link) => (
           <a
             key={link.href}
@@ -65,20 +58,36 @@ export default function Nav() {
         ))}
       </div>
 
-      <a
-        href="#join"
-        style={{
-          fontSize: 12,
-          fontWeight: 600,
-          letterSpacing: "0.1em",
-          color: "#0A0A0A",
-          background: "#EDEDEC",
-          padding: "11px 22px",
-          textDecoration: "none",
-        }}
-      >
+      <a href="#join" className={styles.joinButton}>
         JOIN
       </a>
+
+      <button
+        type="button"
+        className={styles.menuButton}
+        aria-label="Toggle menu"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <path
+            d={menuOpen ? "M1 1L17 13M1 13L17 1" : "M0 1H18M0 7H18M0 13H18"}
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+        </svg>
+      </button>
+
+      <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ""}`}>
+        {navLinks.map((link) => (
+          <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
+            {link.label}
+          </a>
+        ))}
+        <a href="#join" className={styles.mobileJoin} onClick={() => setMenuOpen(false)}>
+          JOIN
+        </a>
+      </div>
     </div>
   );
 }

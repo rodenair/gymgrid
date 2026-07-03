@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
+import styles from "./Footer.module.css";
 
 const shopLinks = [
   { href: "#collection", label: "Collection" },
@@ -57,22 +58,8 @@ function FooterColumn({
 
 export default function Footer() {
   return (
-    <div
-      style={{
-        background: "#050505",
-        borderTop: "1px solid rgba(255,255,255,0.08)",
-        padding: "80px 48px 32px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1400,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
-          gap: 48,
-        }}
-      >
+    <div className={styles.footer}>
+      <div className={styles.columns}>
         <div>
           <div
             style={{
@@ -119,19 +106,7 @@ export default function Footer() {
         <FooterColumn title="CONNECT" links={connectLinks} />
       </div>
 
-      <div
-        style={{
-          maxWidth: 1400,
-          margin: "64px auto 0",
-          paddingTop: 24,
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 12,
-        }}
-      >
+      <div className={styles.bottom}>
         <div style={{ fontSize: 11, color: "#5c5c5c" }}>
           © 2026 GYM GRID. All rights reserved.
         </div>

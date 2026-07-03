@@ -1,16 +1,10 @@
+import styles from "./SocialStrip.module.css";
+
 const placeholders = Array.from({ length: 6 }, (_, i) => i);
 
 export default function SocialStrip() {
   return (
-    <div
-      id="social"
-      style={{
-        background: "#0A0A0A",
-        padding: "0 48px 140px",
-        maxWidth: 1400,
-        margin: "0 auto",
-      }}
-    >
+    <div id="social" className={styles.section}>
       <div
         style={{
           display: "flex",
@@ -43,13 +37,7 @@ export default function SocialStrip() {
           FOLLOW ON INSTAGRAM →
         </a>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(6, 1fr)",
-          gap: 4,
-        }}
-      >
+      <div className={styles.grid}>
         {placeholders.map((i) => (
           <div
             key={i}

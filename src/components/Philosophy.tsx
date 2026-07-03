@@ -1,23 +1,10 @@
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
+import styles from "./Philosophy.module.css";
 
 export default function Philosophy() {
   return (
-    <div
-      id="philosophy"
-      style={{
-        position: "relative",
-        background: "#0A0A0A",
-        padding: "160px 48px",
-        display: "grid",
-        gridTemplateColumns: "0.95fr 1.05fr",
-        gap: 80,
-        alignItems: "center",
-        maxWidth: 1400,
-        margin: "0 auto",
-        overflow: "hidden",
-      }}
-    >
+    <div id="philosophy" className={styles.section}>
       <div style={{ position: "relative" }}>
         <div
           style={{
