@@ -81,7 +81,7 @@ export default function Collection() {
               lineHeight: 1.6,
             }}
           >
-            Four foundational pieces. Available Fall 2026.
+            Available Fall 2026.
           </div>
         </div>
 
