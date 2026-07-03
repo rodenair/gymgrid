@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
+import Reveal from "@/components/motion/Reveal";
 
 const shopLinks = [
   { href: "#collection", label: "Collection" },
@@ -64,7 +65,8 @@ export default function Footer() {
         padding: "80px 48px 32px",
       }}
     >
-      <div
+      <Reveal
+        y={16}
         style={{
           maxWidth: 1400,
           margin: "0 auto",
@@ -117,7 +119,7 @@ export default function Footer() {
         <FooterColumn title="SHOP" links={shopLinks} />
         <FooterColumn title="BRAND" links={brandLinks} />
         <FooterColumn title="CONNECT" links={connectLinks} />
-      </div>
+      </Reveal>
 
       <div
         style={{

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { oswald } from "@/lib/fonts";
+import Reveal from "@/components/motion/Reveal";
 
 export default function Join() {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ export default function Join() {
         textAlign: "center",
       }}
     >
-      <div
+      <Reveal
         style={{
           fontSize: 12,
           fontWeight: 600,
@@ -40,8 +41,9 @@ export default function Join() {
         }}
       >
         // JOIN THE GRID
-      </div>
-      <div
+      </Reveal>
+      <Reveal
+        delay={0.1}
         className={oswald.className}
         style={{
           fontWeight: 700,
@@ -54,8 +56,9 @@ export default function Join() {
         }}
       >
         Be first through the door.
-      </div>
-      <div
+      </Reveal>
+      <Reveal
+        delay={0.2}
         style={{
           fontSize: 15,
           color: "#8C8C8C",
@@ -65,7 +68,7 @@ export default function Join() {
         }}
       >
         Early access to drops, restocks, and nothing else.
-      </div>
+      </Reveal>
 
       {status === "submitted" ? (
         <div

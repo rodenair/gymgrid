@@ -1,8 +1,72 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef } from "react";
 import { oswald } from "@/lib/fonts";
 import { accentText } from "@/lib/theme";
+import { gsap } from "@/lib/gsap";
+import GridScene from "@/components/three/GridScene";
 
 export default function Hero() {
+  const eyebrowRef = useRef<HTMLDivElement>(null);
+  const titleLine1Ref = useRef<HTMLSpanElement>(null);
+  const titleLine2Ref = useRef<HTMLSpanElement>(null);
+  const descRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const scrollCueRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.fromTo(
+      eyebrowRef.current,
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.7 }
+    )
+      .fromTo(
+        [titleLine1Ref.current, titleLine2Ref.current],
+        { opacity: 0, y: 60, clipPath: "inset(0 0 100% 0)" },
+        {
+          opacity: 1,
+          y: 0,
+          clipPath: "inset(0 0 0% 0)",
+          duration: 0.9,
+          stagger: 0.12,
+        },
+        "-=0.35"
+      )
+      .fromTo(
+        descRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.7 },
+        "-=0.45"
+      )
+      .fromTo(
+        ctaRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.7 },
+        "-=0.5"
+      )
+      .fromTo(
+        scrollCueRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6 },
+        "-=0.3"
+      );
+
+    gsap.to(scrollCueRef.current, {
+      y: 6,
+      duration: 1.1,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+      delay: 2,
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -14,16 +78,13 @@ export default function Hero() {
         background: "#000",
       }}
     >
-      <Image
-        src="/assets/hero-model.jpg"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
+      <GridScene />
+      <div
         style={{
-          objectFit: "cover",
-          objectPosition: "65% 30%",
-          opacity: 0.92,
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.1) 68%)",
         }}
       />
       <div
@@ -31,15 +92,7 @@ export default function Hero() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.15) 70%)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 30%)",
+            "linear-gradient(0deg, rgba(0,0,0,0.65) 0%, transparent 22%)",
         }}
       />
 
@@ -55,6 +108,7 @@ export default function Hero() {
         }}
       >
         <div
+          ref={eyebrowRef}
           style={{
             fontSize: 13,
             fontWeight: 600,
@@ -77,11 +131,21 @@ export default function Hero() {
             marginBottom: 26,
           }}
         >
-          Engineered
-          <br />
-          Discipline
+          <span
+            ref={titleLine1Ref}
+            style={{ display: "block", overflow: "hidden" }}
+          >
+            Engineered
+          </span>
+          <span
+            ref={titleLine2Ref}
+            style={{ display: "block", overflow: "hidden" }}
+          >
+            Discipline
+          </span>
         </div>
         <div
+          ref={descRef}
           style={{
             fontSize: 16,
             lineHeight: 1.7,
@@ -93,7 +157,10 @@ export default function Hero() {
           Performance apparel built on structure, not slogans. Every line,
           considered.
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+        <div
+          ref={ctaRef}
+          style={{ display: "flex", alignItems: "center", gap: 20 }}
+        >
           <a
             href="#collection"
             style={{
@@ -126,6 +193,7 @@ export default function Hero() {
       </div>
 
       <div
+        ref={scrollCueRef}
         style={{
           position: "absolute",
           bottom: 36,

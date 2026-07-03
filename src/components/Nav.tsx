@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
 import { accentText } from "@/lib/theme";
+import Reveal from "@/components/motion/Reveal";
 
 const navLinks = [
   { href: "#collection", label: "COLLECTION" },
@@ -10,7 +11,8 @@ const navLinks = [
 
 export default function Nav() {
   return (
-    <div
+    <Reveal
+      y={-12}
       style={{
         position: "sticky",
         top: 0,
@@ -79,6 +81,6 @@ export default function Nav() {
       >
         JOIN
       </a>
-    </div>
+    </Reveal>
   );
 }

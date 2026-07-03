@@ -1,3 +1,5 @@
+import Reveal from "@/components/motion/Reveal";
+
 const placeholders = Array.from({ length: 6 }, (_, i) => i);
 
 export default function SocialStrip() {
@@ -51,8 +53,10 @@ export default function SocialStrip() {
         }}
       >
         {placeholders.map((i) => (
-          <div
+          <Reveal
             key={i}
+            delay={i * 0.06}
+            y={16}
             style={{
               width: "100%",
               aspectRatio: "1/1",
@@ -73,7 +77,7 @@ export default function SocialStrip() {
             >
               Coming soon
             </span>
-          </div>
+          </Reveal>
         ))}
       </div>
     </div>

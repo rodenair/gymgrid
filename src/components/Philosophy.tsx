@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
+import Reveal from "@/components/motion/Reveal";
 
 export default function Philosophy() {
   return (
@@ -18,7 +19,7 @@ export default function Philosophy() {
         overflow: "hidden",
       }}
     >
-      <div style={{ position: "relative" }}>
+      <Reveal style={{ position: "relative" }}>
         <div
           style={{
             fontSize: 12,
@@ -66,9 +67,11 @@ export default function Philosophy() {
         >
           No slogans. No noise. Just precision, engineered into every seam.
         </div>
-      </div>
+      </Reveal>
 
-      <div
+      <Reveal
+        delay={0.15}
+        y={0}
         style={{
           position: "relative",
           background: "#000",
@@ -86,7 +89,7 @@ export default function Philosophy() {
           height={286}
           style={{ width: "100%", maxWidth: 280, height: "auto" }}
         />
-      </div>
+      </Reveal>
     </div>
   );
 }

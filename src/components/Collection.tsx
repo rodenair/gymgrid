@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
+import Reveal from "@/components/motion/Reveal";
 
 const products = [
   {
@@ -39,7 +40,7 @@ export default function Collection() {
       }}
     >
       <div style={{ position: "relative", maxWidth: 1400, margin: "0 auto" }}>
-        <div
+        <Reveal
           style={{
             display: "flex",
             alignItems: "flex-end",
@@ -83,7 +84,7 @@ export default function Collection() {
           >
             Four foundational pieces. Available Fall 2026.
           </div>
-        </div>
+        </Reveal>
 
         <div
           style={{
@@ -92,8 +93,8 @@ export default function Collection() {
             gap: 32,
           }}
         >
-          {products.map((product) => (
-            <div key={product.id}>
+          {products.map((product, index) => (
+            <Reveal key={product.id} delay={index * 0.12}>
               <div
                 style={{
                   position: "relative",
@@ -138,7 +139,7 @@ export default function Collection() {
               >
                 {product.detail}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
