@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Philosophy from "@/components/Philosophy";
 import Collection from "@/components/Collection";
+import SpecMarquee from "@/components/SpecMarquee";
 import Join from "@/components/Join";
 import SocialStrip from "@/components/SocialStrip";
 import Footer from "@/components/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
       <Hero />
       <Philosophy />
       <Collection />
+      <SpecMarquee />
       <Join />
       <SocialStrip />
       <Footer />

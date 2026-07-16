@@ -1,10 +1,56 @@
+"use client";
+
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import styles from "./SocialStrip.module.css";
 
 const placeholders = Array.from({ length: 6 }, (_, i) => i);
 
 export default function SocialStrip() {
+  const root = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      const q = gsap.utils.selector(root);
+      const tiles = q<HTMLElement>(`.${styles.tile}`);
+      const head = q<HTMLElement>("[data-reveal]");
+
+      if (reduce) {
+        gsap.set([tiles, head], { opacity: 1, y: 0 });
+        return;
+      }
+
+      gsap.from(head, {
+        opacity: 0,
+        y: 20,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: { trigger: root.current, start: "top 85%", once: true },
+      });
+
+      gsap.from(tiles, {
+        opacity: 0,
+        y: 40,
+        scale: 0.96,
+        duration: 0.7,
+        ease: "power3.out",
+        stagger: { each: 0.08, grid: "auto", from: "start" },
+        scrollTrigger: {
+          trigger: q<HTMLElement>(`.${styles.grid}`)[0],
+          start: "top 85%",
+          once: true,
+        },
+      });
+    },
+    { scope: root }
+  );
+
   return (
-    <div id="social" className={styles.section}>
+    <div ref={root} id="social" className={styles.section}>
       <div
         style={{
           display: "flex",
@@ -16,6 +62,7 @@ export default function SocialStrip() {
         }}
       >
         <div
+          data-reveal
           style={{
             fontSize: 12,
             fontWeight: 600,
@@ -26,6 +73,7 @@ export default function SocialStrip() {
           {"// @GYMGRID"}
         </div>
         <a
+          data-reveal
           href="#"
           style={{
             fontSize: 12,
@@ -39,18 +87,7 @@ export default function SocialStrip() {
       </div>
       <div className={styles.grid}>
         {placeholders.map((i) => (
-          <div
-            key={i}
-            style={{
-              width: "100%",
-              aspectRatio: "1/1",
-              background: "#111110",
-              border: "1px solid rgba(255,255,255,0.06)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <div key={i} className={styles.tile}>
             <span
               style={{
                 fontSize: 10,

@@ -1,13 +1,37 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { oswald } from "@/lib/fonts";
+import { gsap, useGSAP } from "@/lib/gsap";
 import styles from "./Join.module.css";
 
 export default function Join() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitted" | "error">(
     "idle"
+  );
+  const root = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      const targets = gsap.utils.selector(root)("[data-reveal]");
+      if (reduce) {
+        gsap.set(targets, { opacity: 1, y: 0 });
+        return;
+      }
+      gsap.from(targets, {
+        opacity: 0,
+        y: 28,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.12,
+        scrollTrigger: { trigger: root.current, start: "top 80%", once: true },
+      });
+    },
+    { scope: root }
   );
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -20,8 +44,9 @@ export default function Join() {
   }
 
   return (
-    <div id="join" className={styles.section}>
+    <div ref={root} id="join" className={styles.section}>
       <div
+        data-reveal
         style={{
           fontSize: 12,
           fontWeight: 600,
@@ -33,6 +58,7 @@ export default function Join() {
         {"// JOIN THE GRID"}
       </div>
       <div
+        data-reveal
         className={oswald.className}
         style={{
           fontWeight: 700,
@@ -47,6 +73,7 @@ export default function Join() {
         Be first through the door.
       </div>
       <div
+        data-reveal
         style={{
           fontSize: 15,
           color: "#8C8C8C",
@@ -74,6 +101,7 @@ export default function Join() {
         </div>
       ) : (
         <form
+          data-reveal
           onSubmit={handleSubmit}
           noValidate
           style={{ width: "100%", maxWidth: 440 }}

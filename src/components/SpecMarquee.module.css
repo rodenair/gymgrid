@@ -1,0 +1,47 @@
+.band {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 26px 0;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 32px;
+  white-space: nowrap;
+}
+
+.mark {
+  font-size: 9px;
+  color: #555553;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8c8c8a;
+}
+
+@media (max-width: 600px) {
+  .band {
+    padding: 20px 0;
+  }
+
+  .label {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+  }
+}

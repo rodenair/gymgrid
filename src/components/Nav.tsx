@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { oswald } from "@/lib/fonts";
 import { accentText } from "@/lib/theme";
+import { gsap, useGSAP } from "@/lib/gsap";
 import styles from "./Nav.module.css";
 
 const navLinks = [
@@ -14,9 +15,27 @@ const navLinks = [
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      if (reduce) return;
+      gsap.from(root.current, {
+        y: -24,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.1,
+      });
+    },
+    { scope: root }
+  );
 
   return (
-    <div className={styles.nav}>
+    <div ref={root} className={styles.nav}>
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <div style={{ width: 34, height: 35, flexShrink: 0, position: "relative" }}>
           <Image
