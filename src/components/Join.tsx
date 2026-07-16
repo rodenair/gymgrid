@@ -30,7 +30,7 @@ export default function Join() {
           marginBottom: 22,
         }}
       >
-        // JOIN THE GRID
+        {"// JOIN THE GRID"}
       </div>
       <div
         className={oswald.className}

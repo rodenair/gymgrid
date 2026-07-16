@@ -15,7 +15,7 @@ export default function Philosophy() {
             marginBottom: 24,
           }}
         >
-          // PHILOSOPHY
+          {"// PHILOSOPHY"}
         </div>
         <div
           className={oswald.className}

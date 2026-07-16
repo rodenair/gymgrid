@@ -116,7 +116,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className={styles.scroll}>// SCROLL</div>
+      <div className={styles.scroll}>{"// SCROLL"}</div>
     </div>
   );
 }

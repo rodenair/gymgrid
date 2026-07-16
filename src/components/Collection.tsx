@@ -50,7 +50,7 @@ export default function Collection() {
                 marginBottom: 18,
               }}
             >
-              // COLLECTION
+              {"// COLLECTION"}
             </div>
             <div
               className={oswald.className}

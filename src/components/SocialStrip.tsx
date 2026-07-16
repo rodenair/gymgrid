@@ -23,7 +23,7 @@ export default function SocialStrip() {
             color: "#7A7A78",
           }}
         >
-          // @GYMGRID
+          {"// @GYMGRID"}
         </div>
         <a
           href="#"

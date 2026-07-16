@@ -117,7 +117,7 @@ export default function Footer() {
             letterSpacing: "0.08em",
           }}
         >
-          // GRID.001
+          {"// GRID.001"}
         </div>
       </div>
     </div>
